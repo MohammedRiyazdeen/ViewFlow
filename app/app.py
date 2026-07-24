@@ -13,11 +13,13 @@ text_post = {
     7: {"title": "work content", "content": "Coding project"},
     8: {"title": "shopping content", "content": "Buying groceries"},
     9: {"title": "exercise content", "content": "Morning workout"},
-    10: {"title": "movie content", "content": "Watching a film"}
+   10: {"title": "movie content", "content": "Watching a film"}
 }
 
 @app.get('/posts')
-def get_all_post():
+def get_all_post(limit:int):
+    if limit:
+        return list(text_post.values())[:limit]
     return text_post
 
 @app.get('/posts/{id}')
